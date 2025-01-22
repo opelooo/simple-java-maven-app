@@ -1,6 +1,6 @@
 node {
     properties([
-        pipelineTriggers([pollSCM('H/2 * * * *')]) // Memeriksa perubahan setiap 2 menit
+        pipelineTriggers([pollSCM('*/2 * * * *')]) // Memeriksa perubahan setiap 2 menit
     ])
     
     // Docker setup
