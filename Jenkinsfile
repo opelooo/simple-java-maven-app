@@ -7,6 +7,10 @@ node {
     def mavenImage = 'maven:3.9.0'
 
     try {
+        stage('Checkout') {
+            checkout scm
+        }
+
         stage('Build') {
             docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
                 sh 'mvn -B -DskipTests clean package'
@@ -17,7 +21,6 @@ node {
             docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
                 sh 'mvn test'
             }
-            // Always run junit collection after test
             junit 'target/surefire-reports/*.xml'
         }
 
