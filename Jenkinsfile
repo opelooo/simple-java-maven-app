@@ -16,6 +16,8 @@ node {
 
         stage('Build') {
             docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
+                sh 'mkdir -p /root/.m2/repository'
+                sh 'chmod -R 777 /root/.m2'  // Give read/write/execute permissions
                 sh 'mvn -B -DskipTests clean package'
             }
         }
