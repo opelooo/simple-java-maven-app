@@ -4,7 +4,7 @@ node {
     ])
 
     // Docker setup
-    def mavenImage = 'maven:3.9.0'
+    def mavenImage = 'maven:3.9.2'
 
     try {
         stage('Checkout') {
