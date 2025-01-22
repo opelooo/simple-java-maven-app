@@ -5,7 +5,7 @@ node {
     
     sh 'docker images -a'
     sh 'docker ps -a'
-    throw e
+    sh 'docker image rm maven:3.9.0'
     // Docker setup
     def mavenImage = 'maven:3.9.2'
 
