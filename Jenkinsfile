@@ -3,9 +3,9 @@ node {
         pipelineTriggers([pollSCM('H/2 * * * *')]) // Memeriksa perubahan setiap 2 menit
     ])
     
-    sh 'docker images -a'
-    sh 'docker ps -a'
-    sh 'docker image rm maven:3.9.0'
+    // sh 'docker images -a'
+    // sh 'docker ps -a'
+    // sh 'docker image rm maven:3.9.0'
     // Docker setup
     def mavenImage = 'maven:3.9.2'
 
