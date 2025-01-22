@@ -3,6 +3,8 @@ node {
         pipelineTriggers([pollSCM('H/2 * * * *')]) // Memeriksa perubahan setiap 2 menit
     ])
     
+    sh 'docker image -a'
+    sh 'docker ps -a'
     // Docker setup
     def mavenImage = 'maven:3.9.2'
 
@@ -13,20 +15,20 @@ node {
 
         stage('Build') {
             docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
-                sh 'sudo mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
 
         stage('Test') {
             docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
-                sh 'sudo mvn test'
+                sh 'mvn test'
             }
             junit 'target/surefire-reports/*.xml'
         }
 
         stage('Deliver') {
             docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
-                sh 'sudo ./jenkins/scripts/deliver.sh'
+                sh './jenkins/scripts/deliver.sh'
             }
         }
     } catch (Exception e) {
