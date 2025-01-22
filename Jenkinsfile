@@ -29,7 +29,7 @@ node {
 
         stage('Deliver') {
             docker.image(mavenImage).inside('-v /tmp/.m2:/root/.m2') {
-                sh './jenkins/scripts/deliver.sh'
+                sh './jenkins/scripts/deliver.sh -Dmaven.repo.local=/tmp/.m2/repository'
             }
         }
     } catch (Exception e) {
