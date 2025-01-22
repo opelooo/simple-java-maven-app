@@ -21,7 +21,7 @@ node {
 
         stage('Test') {
             docker.image(mavenImage).inside('-v /tmp/.m2:/root/.m2') {
-                sh 'mvn test'
+                sh 'mvn test -e'
             }
             // Always run junit collection after test
             junit 'target/surefire-reports/*.xml'
