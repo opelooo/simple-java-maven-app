@@ -3,7 +3,7 @@ node {
         pipelineTriggers([pollSCM('H/2 * * * *')]) // Memeriksa perubahan setiap 2 menit
     ])
     
-    sh 'docker images -a'
+    sh 'docker image -a'
     sh 'docker ps -a'
     // Docker setup
     def mavenImage = 'maven:3.9.2'
@@ -15,7 +15,7 @@ node {
 
         stage('Build') {
             docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package -e'
             }
         }
 
