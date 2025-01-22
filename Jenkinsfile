@@ -14,20 +14,20 @@ node {
         }
 
         stage('Build') {
-            docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
+            docker.image(mavenImage) {
                 sh 'mvn -B -DskipTests clean package -e'
             }
         }
 
         stage('Test') {
-            docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
+            docker.image(mavenImage) {
                 sh 'mvn test'
             }
             junit 'target/surefire-reports/*.xml'
         }
 
         stage('Deliver') {
-            docker.image(mavenImage).inside('-v /root/.m2:/root/.m2') {
+            docker.image(mavenImage) {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
