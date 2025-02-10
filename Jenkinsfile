@@ -1,6 +1,6 @@
 node {
     properties([
-        pipelineTriggers([pollSCM('*/2 * * * *')]) // Memeriksa perubahan setiap 2 menit
+        pipelineTriggers([pollSCM('H/2 * * * *')]) // Memeriksa perubahan setiap 2 menit
     ])
 
     def mavenImage = 'maven:3.9.0'
