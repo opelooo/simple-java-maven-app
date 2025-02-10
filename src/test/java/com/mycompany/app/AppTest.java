@@ -1,20 +1,25 @@
 package com.mycompany.app;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AppTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
+/**
+ * Unit test for simple App.
+ */
+public class AppTest
+{
+    @Test
+    public void testAppConstructor() {
+        App app1 = new App();
+        App app2 = new App();
+        assertEquals(app1.getMessage(), app2.getMessage());
+    }
 
     @Test
-    public void testHelloWorld() {
-        String body = this.restTemplate.getForObject("/", String.class);
-        assertThat(body).isEqualTo("Hello World!");
+    public void testAppMessage()
+    {
+        App app = new App();
+        assertEquals("Hello World!", app.getMessage());
     }
 }
