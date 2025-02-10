@@ -22,4 +22,4 @@ set +x
 
 echo 'Starting the Java application on port 3000 and outputting to the Jenkins UI.'
 set -x
-java -jar target/${NAME}-${VERSION}.jar --server.port=3000
+java -jar target/${NAME}-${VERSION}.jar --server.port=3001

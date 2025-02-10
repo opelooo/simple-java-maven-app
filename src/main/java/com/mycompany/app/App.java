@@ -11,7 +11,7 @@ public class App {
 
     public static void main(String[] args) {
         // Atur port server ke 3000
-        System.setProperty("server.port", "3000");
+        System.setProperty("server.port", "3001");
         SpringApplication.run(App.class, args);
     }
 
